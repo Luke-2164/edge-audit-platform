@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/finding.schema.json",
+  "title": "Finding",
+  "description": "Rule-based analysis result produced by Python analyzer for a Raw Event.",
+  "type": "object",
+  "required": [
+    "event_id",
+    "status",
+    "reason",
+    "rule_version",
+    "processed_at"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Common key used to link this finding to a Raw Event.",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "description": "Rule-based judgement result.",
+      "enum": ["normal", "anomaly"]
+    },
+    "reason": {
+      "type": "string",
+      "description": "Human-readable explanation of why the event was judged as normal/anomaly.",
+      "minLength": 1
+    },
+    "rule_version": {
+      "type": "string",
+      "description": "Version of the rule set used for this judgement.",
+      "minLength": 1
+    },
+    "processed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC timestamp when Python analyzer processed the event."
+    }
+  },
+  "additionalProperties": false
+}
